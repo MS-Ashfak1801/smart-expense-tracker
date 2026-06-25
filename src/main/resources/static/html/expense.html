@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Management</title>
+
+    <link rel="stylesheet" href="../css/expense.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="background">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="money money1">💸</div>
+<div class="money money2">💰</div>
+<div class="money money3">💵</div>
+
+<div class="container">
+
+    <div class="expense-card">
+        <div class="top-buttons">
+
+            <a href="dashboard.html" class="back-btn">
+                ← Back To Dashboard
+            </a>
+
+        </div>
+
+        <h1>💸 Add Expense</h1>
+
+        <form id="expenseForm">
+
+            <input
+                    type="text"
+                    id="description"
+                    placeholder="Expense Description"
+                    required>
+
+            <input
+                    type="text"
+                    id="category"
+                    placeholder="Category"
+                    required>
+
+            <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount"
+                    required>
+
+            <input
+                    type="date"
+                    id="date"
+                    required>
+
+            <button type="submit">
+                Add Expense
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="table-card">
+
+        <h2>Expense History</h2>
+
+        <table>
+
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+
+            <tbody id="expenseTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="../js/expense.js"></script>
+
+</body>
+</html>

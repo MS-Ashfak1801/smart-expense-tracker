@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Management</title>
+
+    <!DOCTYPE html>
+
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Income Management</title>
+
+        ```
+        <link rel="stylesheet" href="../css/income.css">
+
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        ```
+
+    </head>
+    <body>
+
+    <div class="background">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="money money1">💰</div>
+    <div class="money money2">💵</div>
+    <div class="money money3">💸</div>
+
+    <div class="container">
+
+        ```
+        <div class="top-buttons">
+
+            <a href="dashboard.html" class="back-btn">
+                🏠 Back To Dashboard
+            </a>
+
+        </div>
+
+        <div class="income-card">
+
+            <h1>💰 Income Management</h1>
+
+            <form id="incomeForm">
+
+                <input
+                        type="text"
+                        id="source"
+                        placeholder="Income Source"
+                        required>
+
+                <input
+                        type="number"
+                        id="amount"
+                        placeholder="Amount"
+                        required>
+
+                <input
+                        type="date"
+                        id="date"
+                        required>
+
+                <button type="submit">
+                    Add Income
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="table-card">
+
+            <h2>📋 Income History</h2>
+
+            <table>
+
+                <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Source</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+
+                </thead>
+
+                <tbody id="incomeTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+        ```
+
+    </div>
+
+    <script src="../js/income.js"></script>
+
+    </body>
+    </html>
