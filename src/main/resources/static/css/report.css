@@ -1,0 +1,289 @@
+/* =========================================
+   COMMON
+========================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    display:flex;
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#7c3aed);
+    overflow:hidden;
+}
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.background span{
+    position:absolute;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:rgba(255,255,255,.05);
+    animation:float 12s infinite;
+}
+
+.background span:nth-child(1){
+    top:5%;
+    left:5%;
+}
+
+.background span:nth-child(2){
+    bottom:10%;
+    right:10%;
+}
+
+.background span:nth-child(3){
+    top:60%;
+    left:45%;
+}
+
+.background span:nth-child(4){
+    top:20%;
+    right:30%;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar{
+    width:260px;
+    height:100vh;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    border-right:1px solid rgba(255,255,255,.15);
+    padding:30px;
+}
+
+.sidebar h2{
+    color:white;
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    margin:18px 0;
+}
+
+.sidebar ul li a{
+    display:block;
+    text-decoration:none;
+    color:white;
+    padding:15px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active{
+    background:rgba(255,255,255,.18);
+    transform:translateX(8px);
+}
+
+.sidebar i{
+    margin-right:12px;
+}
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content{
+    flex:1;
+    padding:40px;
+}
+
+.top-bar h1{
+    color:white;
+    font-size:35px;
+}
+
+.top-bar p{
+    color:#ddd;
+    margin-top:10px;
+    margin-bottom:40px;
+}
+
+/* =========================================
+   REPORT MENU PAGE
+========================================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
+
+.card{
+    text-decoration:none;
+    background:rgba(255,255,255,.10);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+    color:white;
+    transition:.4s;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    background:rgba(255,255,255,.18);
+}
+
+.card i{
+    font-size:55px;
+    color:#f59e0b;
+    margin-bottom:20px;
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#ddd;
+    line-height:1.6;
+}
+
+/* =========================================
+   SUMMARY REPORT
+========================================= */
+
+.summary-container{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.summary-card{
+    background:rgba(255,255,255,.10);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    color:white;
+}
+
+.summary-card i{
+    font-size:45px;
+    margin-bottom:15px;
+    color:#22c55e;
+}
+
+.summary-card h2{
+    margin-bottom:10px;
+}
+
+.summary-card h1{
+    font-size:30px;
+}
+
+/* =========================================
+   REPORT TABLE
+========================================= */
+
+.table-card{
+    background:rgba(255,255,255,.10);
+    backdrop-filter:blur(20px);
+    border-radius:20px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,.15);
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th{
+    background:rgba(255,255,255,.15);
+    color:white;
+    padding:15px;
+}
+
+table td{
+    color:white;
+    padding:15px;
+    text-align:center;
+    border-bottom:1px solid rgba(255,255,255,.10);
+}
+
+table tr:hover{
+    background:rgba(255,255,255,.08);
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btn{
+    display:inline-block;
+    padding:14px 25px;
+    background:#f59e0b;
+    color:white;
+    text-decoration:none;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+    font-size:16px;
+}
+
+.btn:hover{
+    background:#d97706;
+}
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-35px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:900px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .summary-container{
+        grid-template-columns:1fr;
+    }
+
+}

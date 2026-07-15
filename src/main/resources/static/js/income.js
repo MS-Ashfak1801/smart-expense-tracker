@@ -1,257 +1,177 @@
+const API_URL = "http://localhost:8080/income";
 const token = localStorage.getItem("token");
 
-// Login Check
-
-if (!token) {
-
-    alert("Please Login First");
-
-    window.location.replace("login.html");
-}
-
-// Page Load
-
 window.onload = function () {
-
     loadIncome();
 };
 
-// Add Income
+// Load All Income
+function loadIncome() {
 
-document
-    .getElementById("incomeForm")
-    .addEventListener("submit", addIncome);
+    fetch(API_URL, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
 
-async function addIncome(event) {
+            const table = document.getElementById("incomeTable");
+            table.innerHTML = "";
 
-    event.preventDefault();
+            data.forEach(income => {
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${income.id}</td>
+                        <td>${income.source}</td>
+                        <td>${income.amount}</td>
+                        <td>${income.date}</td>
+                        <td>
+                            <button class="edit-btn"
+                                    onclick="editIncome(${income.id})">
+                                Edit
+                            </button>
+
+                            <button class="delete-btn"
+                                    onclick="deleteIncome(${income.id})">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+        })
+        .catch(error => console.error(error));
+}
+
+// Add / Update Income
+function saveIncome() {
+
+    const id = document.getElementById("incomeId").value;
 
     const income = {
 
-        source:
-        document.getElementById("source").value,
+        source: document.getElementById("source").value,
 
-        amount:
-            parseFloat(
-                document.getElementById("amount").value
-            ),
+        amount: parseFloat(
+            document.getElementById("amount").value
+        ),
 
-        date:
-        document.getElementById("date").value
+        date: document.getElementById("date").value
+
     };
 
-    try {
+    let url = API_URL;
+    let method = "POST";
 
-        const response =
-            await fetch(
-                "http://localhost:8080/income",
-                {
-                    method: "POST",
+    if (id !== "") {
 
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer " + token
-                    },
+        url = API_URL + "/" + id;
+        method = "PUT";
 
-                    body: JSON.stringify(income)
-                }
-            );
+    }
 
-        if (response.ok) {
+    fetch(url, {
 
-            alert("Income Added Successfully ✅");
+        method: method,
 
-            document
-                .getElementById("incomeForm")
-                .reset();
+        headers: {
 
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+
+        },
+
+        body: JSON.stringify(income)
+
+    })
+
+        .then(response => response.json())
+        .then(() => {
+
+            clearForm();
             loadIncome();
 
-        } else {
+        })
 
-            alert("Failed To Add Income ❌");
-        }
+        .catch(error => console.error(error));
 
-    } catch (error) {
-
-        console.error(error);
-
-        alert("Server Error ❌");
-    }
 }
 
-// Load Income
+// Edit Income
+function editIncome(id) {
 
-async function loadIncome() {
+    fetch(API_URL + "/" + id, {
 
-    try {
+        headers: {
 
-        const response =
-            await fetch(
-                "http://localhost:8080/income",
-                {
-                    headers: {
-                        "Authorization": "Bearer " + token
-                    }
-                }
-            );
+            "Authorization": "Bearer " + token
 
-        const incomes =
-            await response.json();
+        }
 
-        const tableBody =
-            document.getElementById(
-                "incomeTableBody"
-            );
+    })
 
-        tableBody.innerHTML = "";
+        .then(response => response.json())
+        .then(income => {
 
-        incomes.forEach(income => {
+            document.getElementById("incomeId").value = income.id;
+            document.getElementById("source").value = income.source;
+            document.getElementById("amount").value = income.amount;
+            document.getElementById("date").value = income.date;
 
-            tableBody.innerHTML += `
-                <tr>
+            document.getElementById("saveBtn").innerText =
+                "Update Income";
 
-                    <td>${income.id}</td>
-
-                    <td>${income.source}</td>
-
-                    <td>₹${income.amount}</td>
-
-                    <td>${income.date}</td>
-
-                    <td>
-
-                        <button
-                            onclick="editIncome(${income.id})">
-                            Edit
-                        </button>
-
-                        <button
-                            onclick="deleteIncome(${income.id})">
-                            Delete
-                        </button>
-
-                    </td>
-
-                </tr>
-            `;
         });
 
-    } catch (error) {
-
-        console.error(error);
-    }
-}
-
-// Update Income
-
-async function editIncome(id) {
-
-    const source =
-        prompt("Enter New Source");
-
-    const amount =
-        prompt("Enter New Amount");
-
-    const date =
-        prompt("Enter New Date (YYYY-MM-DD)");
-
-    if (
-        !source ||
-        !amount ||
-        !date
-    ) {
-        return;
-    }
-
-    try {
-
-        const response =
-            await fetch(
-                `http://localhost:8080/income/${id}`,
-                {
-                    method: "PUT",
-
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization":
-                            "Bearer " + token
-                    },
-
-                    body: JSON.stringify({
-                        source: source,
-                        amount: parseFloat(amount),
-                        date: date
-                    })
-                }
-            );
-
-        if (response.ok) {
-
-            alert(
-                "Income Updated Successfully ✅"
-            );
-
-            loadIncome();
-
-        } else {
-
-            alert(
-                "Update Failed ❌"
-            );
-        }
-
-    } catch (error) {
-
-        console.error(error);
-    }
 }
 
 // Delete Income
+function deleteIncome(id) {
 
-async function deleteIncome(id) {
+    if (!confirm("Are you sure?")) {
 
-    const confirmDelete =
-        confirm(
-            "Are you sure you want to delete?"
-        );
-
-    if (!confirmDelete) {
         return;
+
     }
 
-    try {
+    fetch(API_URL + "/" + id, {
 
-        const response =
-            await fetch(
-                `http://localhost:8080/income/${id}`,
-                {
-                    method: "DELETE",
+        method: "DELETE",
 
-                    headers: {
-                        "Authorization":
-                            "Bearer " + token
-                    }
-                }
-            );
+        headers: {
 
-        if (response.ok) {
+            "Authorization": "Bearer " + token
 
-            alert(
-                "Income Deleted Successfully ✅"
-            );
-
-            loadIncome();
-
-        } else {
-
-            alert(
-                "Delete Failed ❌"
-            );
         }
 
-    } catch (error) {
+    })
 
-        console.error(error);
-    }
+        .then(() => loadIncome())
+        .catch(error => console.error(error));
+
+}
+
+// Clear Form
+function clearForm() {
+
+    document.getElementById("incomeId").value = "";
+    document.getElementById("source").value = "";
+    document.getElementById("amount").value = "";
+    document.getElementById("date").value = "";
+
+    document.getElementById("saveBtn").innerText =
+        "Add Income";
+
+}
+
+// Logout
+function logout() {
+
+    localStorage.removeItem("token");
+
+    window.location.href = "login.html";
+
 }

@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Reports</title>
+    <title>Income Report</title>
 
     <link rel="stylesheet"
           href="../css/report.css">
@@ -19,8 +19,6 @@
 </head>
 
 <body>
-
-<!-- Background -->
 
 <div class="background">
 
@@ -40,64 +38,38 @@
     <ul>
 
         <li>
-
             <a href="dashboard.html">
-
                 <i class="fas fa-house"></i>
-
                 Dashboard
-
             </a>
-
         </li>
 
         <li>
-
             <a href="income.html">
-
                 <i class="fas fa-wallet"></i>
-
                 Income
-
             </a>
-
         </li>
 
         <li>
-
             <a href="expense.html">
-
                 <i class="fas fa-money-bill-wave"></i>
-
                 Expense
-
             </a>
-
         </li>
 
         <li>
-
-            <a href="report.html"
-               class="active">
-
+            <a href="report.html" class="active">
                 <i class="fas fa-chart-line"></i>
-
                 Reports
-
             </a>
-
         </li>
 
         <li>
-
             <a href="login.html">
-
                 <i class="fas fa-right-from-bracket"></i>
-
                 Logout
-
             </a>
-
         </li>
 
     </ul>
@@ -110,93 +82,51 @@
 
     <div class="top-bar">
 
-        <h1>
+        <h1>💰 Income Report</h1>
 
-            📊 Report Management
-
-        </h1>
-
-        <p>
-
-            Generate and view reports.
-
-        </p>
+        <p>View all income records.</p>
 
     </div>
 
-    <div class="cards">
+    <div class="table-card">
 
-        <!-- Summary Report -->
+        <table>
 
-        <a href="summary-report.html"
-           class="card">
+            <thead>
 
-            <i class="fas fa-chart-pie"></i>
+            <tr>
 
-            <h2>Summary Report</h2>
+                <th>ID</th>
 
-            <p>
+                <th>Source</th>
 
-                View income, expense and balance summary.
+                <th>Amount</th>
 
-            </p>
+                <th>Date</th>
 
-        </a>
+            </tr>
 
-        <!-- Income Report -->
+            </thead>
 
-        <a href="income-report.html"
-           class="card">
+            <tbody id="incomeReportBody">
 
-            <i class="fas fa-wallet"></i>
+            </tbody>
 
-            <h2>Income Report</h2>
+        </table>
 
-            <p>
+        <br>
 
-                View all income records.
+        <a href="report.html" class="btn">
 
-            </p>
-
-        </a>
-
-        <!-- Expense Report -->
-
-        <a href="expense-report.html"
-           class="card">
-
-            <i class="fas fa-money-check-dollar"></i>
-
-            <h2>Expense Report</h2>
-
-            <p>
-
-                View all expense records.
-
-            </p>
-
-        </a>
-
-        <!-- Dashboard -->
-
-        <a href="dashboard.html"
-           class="card">
-
-            <i class="fas fa-arrow-left"></i>
-
-            <h2>Back To Dashboard</h2>
-
-            <p>
-
-                Return to Dashboard.
-
-            </p>
+            ← Back
 
         </a>
 
     </div>
 
 </div>
+
+<script src="../js/income-report.js"></script>
 
 </body>
 

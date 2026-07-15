@@ -4,10 +4,11 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Income Management</title>
+    <title>Delete Income</title>
 
     <link rel="stylesheet"
           href="../css/income.css">
@@ -18,8 +19,6 @@
 </head>
 
 <body>
-
-<!-- Background -->
 
 <div class="background">
 
@@ -46,7 +45,7 @@
         </li>
 
         <li>
-            <a class="active" href="income.html">
+            <a href="income.html" class="active">
                 <i class="fas fa-wallet"></i>
                 Income
             </a>
@@ -83,85 +82,52 @@
 
     <div class="top-bar">
 
-        <h1>
+        <h1>🗑 Delete Income</h1>
 
-            💰 Income Management
-
-        </h1>
-
-        <p>
-
-            Manage all your income operations.
-
-        </p>
+        <p>Delete an income record.</p>
 
     </div>
 
-    <div class="cards">
+    <div class="form-card">
 
-        <!-- Add Income -->
+        <form id="deleteIncomeForm">
 
-        <a href="add-income.html"
-           class="card">
+            <div class="input-group">
 
-            <i class="fas fa-plus-circle"></i>
+                <label>Income ID</label>
 
-            <h2>Add Income</h2>
+                <input
+                        type="number"
+                        id="incomeId"
+                        placeholder="Enter Income ID"
+                        required>
 
-            <p>
-                Add new income.
-            </p>
+            </div>
 
-        </a>
+            <button
+                    type="submit"
+                    class="btn">
 
-        <!-- View Income -->
+                Delete Income
 
-        <a href="view-income.html"
-           class="card">
+            </button>
 
-            <i class="fas fa-eye"></i>
+        </form>
 
-            <h2>View Income</h2>
+        <br>
 
-            <p>
-                View all income records.
-            </p>
+        <a href="income.html"
+           class="btn">
 
-        </a>
-
-        <!-- Update Income -->
-
-        <a href="update-income.html"
-           class="card">
-
-            <i class="fas fa-pen"></i>
-
-            <h2>Update Income</h2>
-
-            <p>
-                Update income details.
-            </p>
-
-        </a>
-
-        <!-- Delete Income -->
-
-        <a href="delete-income.html"
-           class="card">
-
-            <i class="fas fa-trash"></i>
-
-            <h2>Delete Income</h2>
-
-            <p>
-                Delete income records.
-            </p>
+            ← Back
 
         </a>
 
     </div>
 
 </div>
+
+<script src="../js/delete-income.js"></script>
 
 </body>
 
